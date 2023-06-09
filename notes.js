@@ -50,6 +50,14 @@ const removeNote = (title) => {
 
 }
 
+const listNotes = () => {
+    console.log(chalk.bgCyanBright("Your notes: "))
+    const notes = loadNotes()
+    for (let i = 0; i < notes.length; i++) {
+        console.log(notes[i].title)
+    }
+}
+
 const loadNotes = () => {
     try {
         const dataBuffer = fs.readFileSync('notes.json')
@@ -63,9 +71,10 @@ const loadNotes = () => {
 
 }
 
+
 const saveNotes = (notes) => {
     const dataJSON = JSON.stringify(notes)
     fs.writeFileSync('notes.json', dataJSON)
 }
 
-module.exports = { getNotes: getNotes, addNote: addNote, removeNote: removeNote } // Exporting an object
+module.exports = { getNotes: getNotes, addNote: addNote, removeNote: removeNote, listNotes: listNotes } // Exporting an object
